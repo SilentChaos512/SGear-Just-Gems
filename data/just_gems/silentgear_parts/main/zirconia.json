@@ -1,0 +1,105 @@
+{
+    "conditions": [
+        {
+            "type": "forge:not",
+            "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:gems/zirconia"
+            }
+        }
+    ],
+    "availability": {
+        "tier": 3
+    },
+    "crafting_items": {
+        "normal": {
+            "tag": "forge:gems/zirconia"
+        },
+        "small": {
+            "size": 9,
+            "tag": "forge:nuggets/zirconia"
+        }
+    },
+    "name": {
+        "text": "Zirconia"
+    },
+    "stats": [
+        {
+            "name": "durability",
+            "value": 1000
+        },
+        {
+            "name": "armor_durability",
+            "value": 31
+        },
+        {
+            "name": "enchantability",
+            "value": 15
+        },
+        {
+            "name": "harvest_level",
+            "value": 3
+        },
+        {
+            "name": "harvest_speed",
+            "value": 10
+        },
+        {
+            "name": "melee_damage",
+            "value": 5
+        },
+        {
+            "name": "magic_damage",
+            "value": 4
+        },
+        {
+            "name": "attack_speed",
+            "value": 0.1
+        },
+        {
+            "name": "armor",
+            "value": 20
+        },
+        {
+            "name": "armor_toughness",
+            "value": 6
+        },
+        {
+            "name": "magic_armor",
+            "value": 3
+        },
+        {
+            "name": "ranged_damage",
+            "value": 2
+        },
+        {
+            "name": "ranged_speed",
+            "value": 0.0
+        },
+        {
+            "name": "chargeability",
+            "value": 0.9
+        },
+        {
+            "name": "rarity",
+            "value": 40
+        }
+    ],
+    "textures": {
+        "all": {
+            "lite_texture": "high_contrast_with_highlight",
+            "highlight": true,
+            "broken_color": "#EEEEEE",
+            "normal_color": "#EEEEEE",
+            "texture_domain": "silentgear",
+            "texture_suffix": "generic_hc"
+        }
+    },
+    "traits": [
+        {
+            "level": 2,
+            "name": "silentgear:brittle"
+        }
+    ],
+    "type": "silentgear:main"
+}

@@ -1,0 +1,105 @@
+{
+    "conditions": [
+        {
+            "type": "forge:not",
+            "value": {
+                "type": "forge:tag_empty",
+                "tag": "forge:gems/galaxite"
+            }
+        }
+    ],
+    "availability": {
+        "tier": 3
+    },
+    "crafting_items": {
+        "normal": {
+            "tag": "forge:gems/galaxite"
+        },
+        "small": {
+            "size": 9,
+            "tag": "forge:nuggets/galaxite"
+        }
+    },
+    "name": {
+        "text": "Galaxite"
+    },
+    "stats": [
+        {
+            "name": "durability",
+            "value": 400
+        },
+        {
+            "name": "armor_durability",
+            "value": 12
+        },
+        {
+            "name": "enchantability",
+            "value": 8
+        },
+        {
+            "name": "harvest_level",
+            "value": 2
+        },
+        {
+            "name": "harvest_speed",
+            "value": 5
+        },
+        {
+            "name": "melee_damage",
+            "value": 4
+        },
+        {
+            "name": "magic_damage",
+            "value": 2
+        },
+        {
+            "name": "attack_speed",
+            "value": 0.3
+        },
+        {
+            "name": "armor",
+            "value": 17
+        },
+        {
+            "name": "armor_toughness",
+            "value": 2
+        },
+        {
+            "name": "magic_armor",
+            "value": 2
+        },
+        {
+            "name": "ranged_damage",
+            "value": 1
+        },
+        {
+            "name": "ranged_speed",
+            "value": 0.2
+        },
+        {
+            "name": "chargeability",
+            "value": 1.1
+        },
+        {
+            "name": "rarity",
+            "value": 40
+        }
+    ],
+    "textures": {
+        "all": {
+            "lite_texture": "high_contrast_with_highlight",
+            "highlight": true,
+            "broken_color": "#4D4D4D",
+            "normal_color": "#4D4D4D",
+            "texture_domain": "silentgear",
+            "texture_suffix": "generic_hc"
+        }
+    },
+    "traits": [
+        {
+            "level": 2,
+            "name": "silentgear:brittle"
+        }
+    ],
+    "type": "silentgear:main"
+}
