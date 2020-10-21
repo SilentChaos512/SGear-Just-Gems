@@ -1,0 +1,51 @@
+{
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:gems/galaxite"
+      }
+    }
+  ],
+  "availability": {
+    "tier": 3,
+    "visible": true,
+    "gear_blacklist": []
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/galaxite"
+    }
+  },
+  "name": {
+    "text": "Galaxite"
+  },
+  "stats": {
+    "main": {
+      "durability": 400.0,
+      "armor_durability": 12.0,
+      "enchantability": 8.0,
+      "harvest_level": 2.0,
+      "harvest_speed": 5.0,
+      "melee_damage": 4.0,
+      "magic_damage": 2.0,
+      "attack_speed": 0.3,
+      "armor": 17.0,
+      "armor_toughness": 2.0,
+      "magic_armor": 2.0,
+      "ranged_damage": 1.0,
+      "ranged_speed": 0.2,
+      "rarity": 40.0,
+      "silentgems:chargeability": 1.2
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:brittle",
+        "level": 2
+      }
+    ]
+  }
+}

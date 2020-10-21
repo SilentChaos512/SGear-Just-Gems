@@ -1,0 +1,17 @@
+{
+  "type": "silentgear:synergy",
+  "max_level": 5,
+  "name": {
+    "text": "Synergy Damper (Just Gems)"
+  },
+  "description": {
+    "text": "Lowers synergy if it is at least 105%"
+  },
+  "cancels_with": [
+    "just_gems:synergy_booster"
+  ],
+  "synergy_multi": -0.05,
+  "applicable_range": {
+    "min": 1.049
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:gems/zirconia"
+      }
+    }
+  ],
+  "availability": {
+    "tier": 3,
+    "visible": true,
+    "gear_blacklist": []
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/zirconia"
+    }
+  },
+  "name": {
+    "text": "Zirconia"
+  },
+  "stats": {
+    "main": {
+      "durability": 1000.0,
+      "armor_durability": 31.0,
+      "enchantability": 15.0,
+      "harvest_level": 3.0,
+      "harvest_speed": 10.0,
+      "melee_damage": 5.0,
+      "magic_damage": 4.0,
+      "attack_speed": 0.1,
+      "armor": 20.0,
+      "armor_toughness": 6.0,
+      "magic_armor": 3.0,
+      "ranged_damage": 2.0,
+      "ranged_speed": 0.0,
+      "rarity": 50.0,
+      "silentgems:chargeability": 1.1
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:brittle",
+        "level": 2
+      }
+    ]
+  }
+}
