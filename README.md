@@ -8,7 +8,7 @@ Some things to note:
 * If you see any **gems missing from this data pack**, please report it to me.
 * If you find a mod that does not work with this data pack, they **may not be tagging their items correctly**. Ask the mod author or me to take a look.
 
-This pack is licensed under The Unlicense. You may modify and distribute as you see fit, no need to credit me in any way.
+This pack is licensed under The Unlicense. You may modify and distribute as you see fit, no need to credit me in any way (but it would be cool if you did).
 
 ## Instructions
 
@@ -17,7 +17,11 @@ This pack is licensed under The Unlicense. You may modify and distribute as you 
 1. Go to releases (https://github.com/SilentChaos512/SGear-Just-Gems/releases)
 2. Download the ZIP file for the latest applicable version
 
-### Minecraft 1.14.x+
+### Minecraft 1.16.x+ (and Recent 1.15.2 Versions)
+
+Load the downloaded ZIP file as **both** a _data pack_ and _resource pack_.
+
+### Minecraft 1.14.x (and Older 1.15.2 Versions)
 
 Simply place the downloaded ZIP file in one of these locations
 
