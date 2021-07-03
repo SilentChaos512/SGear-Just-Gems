@@ -1,5 +1,8 @@
 # Changelog
 
+## [Unreleased]
+- Add "gem" category to all materials [#2]
+
 ## [2.0] - 2020-10-21
 - Updated for Silent Gear 2.3+ (may still work on Minecraft 1.15.2 as well)
 - Added some new traits
