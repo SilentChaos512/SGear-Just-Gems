@@ -1,0 +1,75 @@
+{
+  "type": "silentgear:standard",
+  "simple": true,
+  "availability": {
+    "tier": 3,
+    "categories": [
+      "gem"
+    ],
+    "visible": true,
+    "gear_blacklist": [],
+    "can_salvage": true
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/ruby"
+    }
+  },
+  "name": {
+    "text": "Ruby"
+  },
+  "stats": {
+    "main": {
+      "durability": 1024.0,
+      "armor_durability": 24.0,
+      "enchantability": 10.0,
+      "rarity": 30.0,
+      "chargeability": 1.1,
+      "harvest_level": 2.0,
+      "harvest_speed": 8.0,
+      "melee_damage": 5.0,
+      "magic_damage": 2.0,
+      "attack_speed": -0.2,
+      "ranged_damage": 1.0,
+      "ranged_speed": -0.2,
+      "armor": 14.0,
+      "armor_toughness": 2.0,
+      "magic_armor": 4.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:sharp",
+        "level": 4,
+        "conditions": [
+          {
+            "type": "silentgear:gear_type",
+            "gear_type": "tool"
+          }
+        ]
+      },
+      {
+        "name": "silentgear:brittle",
+        "level": 1
+      }
+    ]
+  },
+  "model": {
+    "main/all": [
+      {
+        "texture": "silentgear:main_generic_hc",
+        "color": "#E61D1D"
+      },
+      {
+        "texture": "silentgear:_highlight"
+      }
+    ],
+    "main/fragment": [
+      {
+        "texture": "silentgear:metal",
+        "color": "#E61D1D"
+      }
+    ]
+  }
+}

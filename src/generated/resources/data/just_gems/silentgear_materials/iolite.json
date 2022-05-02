@@ -1,0 +1,69 @@
+{
+  "type": "silentgear:standard",
+  "simple": true,
+  "availability": {
+    "tier": 3,
+    "categories": [
+      "gem"
+    ],
+    "visible": true,
+    "gear_blacklist": [],
+    "can_salvage": true
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/iolite"
+    }
+  },
+  "name": {
+    "text": "Iolite"
+  },
+  "stats": {
+    "main": {
+      "durability": 768.0,
+      "armor_durability": 20.0,
+      "enchantability": 11.0,
+      "rarity": 45.0,
+      "chargeability": 1.0,
+      "harvest_level": 2.0,
+      "harvest_speed": 6.0,
+      "melee_damage": 2.0,
+      "magic_damage": 4.0,
+      "attack_speed": 0.0,
+      "ranged_damage": 0.0,
+      "ranged_speed": 0.0,
+      "armor": 20.0,
+      "armor_toughness": 4.0,
+      "magic_armor": 6.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:stellar",
+        "level": 2
+      },
+      {
+        "name": "silentgear:brittle",
+        "level": 1
+      }
+    ]
+  },
+  "model": {
+    "main/all": [
+      {
+        "texture": "silentgear:main_generic_hc",
+        "color": "#5F00A3"
+      },
+      {
+        "texture": "silentgear:_highlight"
+      }
+    ],
+    "main/fragment": [
+      {
+        "texture": "silentgear:metal",
+        "color": "#5F00A3"
+      }
+    ]
+  }
+}

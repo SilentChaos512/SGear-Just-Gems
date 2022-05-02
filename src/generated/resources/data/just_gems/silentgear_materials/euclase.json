@@ -1,0 +1,79 @@
+{
+  "type": "silentgear:standard",
+  "simple": true,
+  "availability": {
+    "tier": 3,
+    "categories": [
+      "gem"
+    ],
+    "visible": true,
+    "gear_blacklist": [],
+    "can_salvage": true
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/euclase"
+    }
+  },
+  "name": {
+    "text": "Euclase"
+  },
+  "stats": {
+    "main": {
+      "durability": 1024.0,
+      "armor_durability": 14.0,
+      "enchantability": 15.0,
+      "rarity": 45.0,
+      "chargeability": 1.4,
+      "harvest_level": 3.0,
+      "harvest_speed": 10.0,
+      "melee_damage": 3.0,
+      "magic_damage": 5.0,
+      "attack_speed": -0.1,
+      "ranged_damage": 4.0,
+      "ranged_speed": -0.2,
+      "armor": 14.0,
+      "armor_toughness": 4.0,
+      "magic_armor": 6.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:mighty",
+        "level": 2,
+        "conditions": [
+          {
+            "type": "silentgear:gear_type",
+            "gear_type": "tool"
+          },
+          {
+            "type": "silentgear:material_ratio",
+            "ratio": 0.35
+          }
+        ]
+      },
+      {
+        "name": "silentgear:brittle",
+        "level": 1
+      }
+    ]
+  },
+  "model": {
+    "main/all": [
+      {
+        "texture": "silentgear:main_generic_hc",
+        "color": "#006DA3"
+      },
+      {
+        "texture": "silentgear:_highlight"
+      }
+    ],
+    "main/fragment": [
+      {
+        "texture": "silentgear:metal",
+        "color": "#006DA3"
+      }
+    ]
+  }
+}

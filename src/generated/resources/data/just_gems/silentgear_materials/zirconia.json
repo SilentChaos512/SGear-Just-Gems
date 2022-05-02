@@ -1,0 +1,79 @@
+{
+  "type": "silentgear:standard",
+  "simple": true,
+  "availability": {
+    "tier": 3,
+    "categories": [
+      "gem"
+    ],
+    "visible": true,
+    "gear_blacklist": [],
+    "can_salvage": true
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/zirconia"
+    }
+  },
+  "name": {
+    "text": "Zirconia"
+  },
+  "stats": {
+    "main": {
+      "durability": 1000.0,
+      "armor_durability": 31.0,
+      "enchantability": 15.0,
+      "rarity": 50.0,
+      "chargeability": 1.1,
+      "harvest_level": 3.0,
+      "harvest_speed": 10.0,
+      "melee_damage": 5.0,
+      "magic_damage": 4.0,
+      "attack_speed": 0.1,
+      "ranged_damage": 2.0,
+      "ranged_speed": 0.0,
+      "armor": 20.0,
+      "armor_toughness": 6.0,
+      "magic_armor": 3.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:floatstoner",
+        "level": 1,
+        "conditions": [
+          {
+            "type": "silentgear:gear_type",
+            "gear_type": "tool"
+          },
+          {
+            "type": "silentgear:material_ratio",
+            "ratio": 0.7
+          }
+        ]
+      },
+      {
+        "name": "silentgear:brittle",
+        "level": 4
+      }
+    ]
+  },
+  "model": {
+    "main/all": [
+      {
+        "texture": "silentgear:main_generic_hc",
+        "color": "#EEEEEE"
+      },
+      {
+        "texture": "silentgear:_highlight"
+      }
+    ],
+    "main/fragment": [
+      {
+        "texture": "silentgear:metal",
+        "color": "#EEEEEE"
+      }
+    ]
+  }
+}

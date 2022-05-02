@@ -1,0 +1,362 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'maven-publish'
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'idea'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
+
+repositories {
+    flatDir {
+        name "fileRepo"
+        dirs "repo"
+    }
+    mavenLocal()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs = ['-Xlint:deprecation']
+}
+
+javadoc {
+    failOnError = false
+}
+
+archivesBaseName = project.archivesBaseName
+def versionInfo = getModVersion()
+System.out.println(versionInfo)
+def version_short = "${versionInfo['version_short']}"
+version = "${versionInfo['version']}"
+
+def gpr_creds = { // Credentials for GitHub Packages, since this is used multiple times
+    username = property('gpr.username')
+    password = property('gpr.token')
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: mc_version
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                justgems {
+                    source sourceSets.main
+                }
+            }
+
+            // For Patchouli Mixins to not crash
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                justgems {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', project.mod_id, '--all',
+                    '--existing', file('src/main/resources').toString(),
+                    '--existing', file('src/generated/resources').toString(),
+                    '--output', file('src/generated/resources/')
+
+            mods {
+                justgems {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri("https://maven.pkg.github.com/silentchaos512/silentlib")
+        credentials gpr_creds
+    }
+    maven {
+        url = uri("https://maven.pkg.github.com/silentchaos512/silent-utils")
+        credentials gpr_creds
+    }
+    maven {
+        url = uri("https://maven.pkg.github.com/silentchaos512/silent-gear")
+        credentials gpr_creds
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        url 'https://maven.mcmoddev.com'
+    }
+    maven {
+        url 'https://maven.blamejared.com'
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${project.forge_version}"
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+
+    implementation fg.deobf("net.silentchaos512:silent-lib:${project.sl_version}") {
+        exclude module: "forge"
+    }
+
+    // Silent Gear
+    if (project.hasProperty("sgear_version")) {
+        implementation fg.deobf("net.silentchaos512:silent-gear:${project.sgear_version}") {
+            exclude module: 'forge'
+            exclude module: 'jei-1.18.2'
+            exclude module: 'silent-lib'
+            exclude module: 'curios-forge'
+            exclude module: 'World-Stripper'
+            exclude module: 'Patchouli'
+        }
+    }
+
+    // JEI
+    if (project.hasProperty('jei_version')) {
+        // compile against the JEI API but do not include it at runtime
+        compileOnly fg.deobf("mezz.jei:jei-${project.jei_version}:api")
+        // at runtime, use the full JEI jar
+        runtimeOnly fg.deobf("mezz.jei:jei-${project.jei_version}")
+    }
+}
+
+jar {
+    manifest {
+        attributes(["Specification-Title"     : project.name,
+                    "Specification-Vendor"    : "SilentChaos512",
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Vendor"   : "SilentChaos512",
+                    "Implementation-Version"  : version_short,
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.getDestinationDir()
+}
+
+task apiJar(type: Jar) {
+    classifier = 'api'
+    include 'net/silentchaos512/gear/api/**/*'
+    from sourceSets.main.allSource
+    from sourceSets.main.output
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+    archives apiJar
+}
+
+curseforge {
+    if (project.hasProperty('cf_project_id') && project.hasProperty('cf_release_type') && project.hasProperty('cf_changelog_filename') &&
+            ((project.cf_release_type == 'alpha') || (project.cf_release_type == 'beta') || (project.cf_release_type == 'release'))) {
+        apiKey = property('curseforge.apiKey')
+        project {
+            id = project.cf_project_id
+            changelog = file(project.cf_changelog_filename)
+            releaseType = project.cf_release_type
+            addGameVersion(project.mc_version)
+            mainArtifact(jar) {
+//                displayName = "$project.description $display_version"
+                relations {
+                    requiredDependency 'silent-lib'
+                    optionalDependency 'caelus'
+                    optionalDependency 'curios'
+                }
+            }
+        }
+    }
+}
+
+// GPR/Maven publishing
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/silentchaos512/${project.repoName}")
+            credentials gpr_creds
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+            artifact sourcesJar
+            artifact javadocJar
+        }
+    }
+}
+
+// Version stuff
+
+def getModVersion() {
+    try {
+        return getGitVersion()
+    } catch (Exception ex) {
+        System.out.println("Git version failed, falling back to gradle.properties")
+        return makeVersionMap(project.build_version + '-' + getGitHash())
+    }
+}
+
+def getGitVersion() {
+    // Call git command
+    def outStream = new ByteArrayOutputStream()
+    def result = exec {
+        executable = 'git'
+        args = ['describe', '--long']
+        standardOutput = outStream
+    }
+
+    def fullVersion = outStream.toString()
+    return makeVersionMap(fullVersion)
+}
+
+def getGitHash() {
+    def outStream = new ByteArrayOutputStream()
+    def result = exec {
+        executable = 'git'
+        args = ['rev-parse', 'HEAD']
+        standardOutput = outStream
+    }
+
+    return outStream.toString().trim().substring(0, 6)
+}
+
+def makeVersionMap(version) {
+    def matcher = version.trim() =~ /(\d+).(\d+).(\d+)-(.*)/
+
+    def maj = matcher[0][1]
+    def min = matcher[0][2]
+    def rev = matcher[0][3]
+    def bn = getBuildNumber()
+
+    return makeVersionMap(maj, min, rev, bn, matcher[0][4])
+}
+
+def makeVersionMap(maj, min, rev, bn, githash) {
+    def out = [:]
+    out['build.major.number'] = maj.toString()
+    out['build.minor.number'] = min.toString()
+    out['build.revision.number'] = rev.toString()
+    out['build.githash'] = githash
+    out['build.number'] = bn.toString()
+    out['version_short'] = "${maj}.${min}.${rev}".toString()
+    out['version'] = "${project.mc_version}-${maj}.${min}.${rev}".toString()
+    return out
+}
+
+// Build number tracking
+
+String getBuildNumber() {
+    def versionFile = file('version.properties')
+    if (versionFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        return versionProps['build_num'].toString()
+    }
+    return "1"
+}
+
+task incrementBuild {
+    doFirst {
+        def versionFile = file('version.properties')
+        if (versionFile.canRead()) {
+            Properties versionProps = new Properties()
+            versionProps.load(new FileInputStream(versionFile))
+            def num = versionProps['build_num'].toInteger() + 1
+            println("incrementing BuildNumber to: " + num)
+            versionProps['build_num'] = num.toString()
+            versionProps.store(versionFile.newWriter(), null)
+        } else {
+            println("version.properties file not found! Ignoring.")
+        }
+    }
+}
+build.finalizedBy incrementBuild // only increment on successful builds
+
+// Update JSON management
+
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+def writeUpdateJson() {
+    def version = getModVersion()['version_short']
+    def slurper = new JsonSlurper()
+    def file = new File('update.json')
+    def json = slurper.parse(file)
+
+    // TODO: Maybe add something to create an abbreviated changelog? May not be useful...
+    if (!json[project.mc_version].containsKey(version.toString()))
+        json[project.mc_version][version.toString()] = 'https://github.com/SilentChaos512/Silent-Gear/blob/1.16.x/CHANGELOG.md'
+    json[project.mc_version] = json[project.mc_version].sort([compare: { a, b -> b.compareTo(a) }] as Comparator)
+    json['promos']["${project.mc_version}-latest"] = version
+    json['promos']["${project.mc_version}-recommended"] = version
+
+    println(json)
+    file.write(JsonOutput.prettyPrint(JsonOutput.toJson(json)))
+}
+
+task createUpdateJson {
+    doLast {
+        println('Updating update.json...')
+        writeUpdateJson()
+    }
+}
+//build.finalizedBy createUpdateJson

@@ -1,0 +1,75 @@
+{
+  "type": "silentgear:standard",
+  "simple": true,
+  "availability": {
+    "tier": 3,
+    "categories": [
+      "gem"
+    ],
+    "visible": true,
+    "gear_blacklist": [],
+    "can_salvage": true
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:gems/pearl"
+    }
+  },
+  "name": {
+    "text": "Pearl"
+  },
+  "stats": {
+    "main": {
+      "durability": 512.0,
+      "armor_durability": 14.0,
+      "enchantability": 17.0,
+      "rarity": 60.0,
+      "chargeability": 1.4,
+      "harvest_level": 2.0,
+      "harvest_speed": 8.0,
+      "melee_damage": 4.0,
+      "magic_damage": 5.0,
+      "attack_speed": 0.3,
+      "ranged_damage": 2.0,
+      "ranged_speed": 0.2,
+      "armor": 26.0,
+      "armor_toughness": 4.0,
+      "magic_armor": 10.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:adamant",
+        "level": 2,
+        "conditions": [
+          {
+            "type": "silentgear:gear_type",
+            "gear_type": "armor"
+          }
+        ]
+      },
+      {
+        "name": "silentgear:brittle",
+        "level": 3
+      }
+    ]
+  },
+  "model": {
+    "main/all": [
+      {
+        "texture": "silentgear:main_generic_hc",
+        "color": "#E2E8F1"
+      },
+      {
+        "texture": "silentgear:_highlight"
+      }
+    ],
+    "main/fragment": [
+      {
+        "texture": "silentgear:metal",
+        "color": "#E2E8F1"
+      }
+    ]
+  }
+}

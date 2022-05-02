@@ -1,0 +1,40 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+issueTrackerURL="https://github.com/SilentChaos512/SGear-Just-Gems/issues"
+displayURL="https://github.com/SilentChaos512/SGear-Just-Gems"
+#logoFile="examplemod.png" #optional
+credits=""
+authors="SilentChaos512"
+
+[[mods]]
+    modId="just_gems"
+    version="${file.jarVersion}"
+    displayName="SGear: Just Gems"
+    description='''
+    '''
+
+[[dependencies.just_gems]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.just_gems]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.just_gems]]
+    modId="silentlib"
+    mandatory=true
+    versionRange="[6.2,7)"
+    ordering = "NONE"
+    side = "BOTH"
+[[dependencies.just_gems]]
+    modId="silentgear"
+    mandatory=false
+    versionRange="[2.10,)"
+    ordering="AFTER"
+    side="BOTH"
